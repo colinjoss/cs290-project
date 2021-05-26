@@ -1,0 +1,144 @@
+body {
+    font-family: arial;
+    background-color: #50C878;
+}
+
+div {
+    margin: 1% 10%;
+    background-color: white;
+    height: 150%;
+}
+
+hgroup {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+h4 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul a:visited {
+    color: black;
+}
+
+nav ul li {
+    display: inline;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+nav ul li:hover {
+    background-color: #50C878;
+}
+
+section {
+    width: 75%;
+    margin: 50px auto;
+    border: solid lightgrey;
+    border-radius: 10px;
+    background-color: rgb(241, 241, 241);
+}
+
+article {
+    width: 75%;
+    margin: 50px auto;
+    border: solid lightgrey;
+    border-radius: 10px;
+    background-color: rgb(241, 241, 241);
+    padding: 3%;
+}
+
+#scroll {
+    margin: auto;
+    overflow: auto;
+    width: 85%;
+    height: 120px;
+    background-color: black;
+    color: rgb(168, 168, 18);
+    font-family: monospace;
+    font-size: 11pt;
+}
+
+section h3 {
+    text-align: center;
+}
+
+section ul {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    width: 75%;
+}
+
+section li {
+    padding: 5px;
+}
+
+.carousel {
+    width: 90%;
+}
+
+img {
+    height: 50%;
+    width: 50%;
+    float: right;
+    padding: 35px;
+}
+
+#button1 {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+    left: 72%;
+    top: 102%;
+}
+
+#button1:hover {
+    background-color: lightgray;
+}
+
+#button2 {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    position: relative;
+    left: 48%;
+    top: 102%
+}
+
+#button2:hover {
+    background-color: lightgray;
+}
+
+fieldset {
+    margin: 1%;
+}
+
+input {
+    margin: 1%;
+}
+
+#message {
+    width: 99%;
+    height: 300px;
+}
+
+footer {
+    padding: 10% 0 0 0;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    </head>
+    <body>
+        <div>
+            <hgroup>
+                <h1>Colin Joss</h1>
+                <h4>colindjoss@gmail.com</h4>
+                <h4>425-591-8603</h4>
+                <h4><a href='https://github.com/colinjoss'>github</a></h4>
+                <h4><a href='https://www.linkedin.com/in/colindjoss/'>linkedin</a></h4>
+            </hgroup>
+            <nav>
+                <ul>
+                    <a href='index.html'><li>Home</li></a>
+                    <a href='subpage-1.html'><li>Babel Bot</li></a>
+                    <a href='subpage-2.html'><li>AutoDiary</li></a>
+                    <a href='subpage-3.html'><li>Spotify ETL</li></a>
+                    <a href='contact_form.html'><li>Contact Me</li></a>
+                </ul>
+            </nav>
+            <article>
+                <h2>Project 2: AutoDiary</h2>
+                <h4>A program that automates upkeep of my personal diary</h4>
+                <h3>Problem</h3>
+                <p>
+                    For the past 8 years, I've kept a detailed diary. This diary is not
+                    written, as one might expect, but instead consists of a collection of 
+                    audio recordings.
+                    These recordings are accompanied by a spreadsheet that makes it easier
+                    to find information and keeps track of various other stats.
+                </p>
+                <p>
+                    The goal of this project was to simplify the maintainence of 
+                    this diary, such as calculating statistics and adding new entries 
+                    to the collection.
+                </p>
+                <h3>Process</h3>
+                <p>
+                    When I started coding, I pursued a loose vision
+                    of what I wanted to accomplish. I started by figuring out how to pull
+                    data from my speadsheets. In early drafts, this was done with Python's
+                    built-in csv library, but in later versions I learned how to use Pandas - 
+                    a library I discovered to be massively useful.
+                </p>
+                <p>
+                    Then, I focused on creating an interface through which
+                    data could be accessed or modified - the final product needed
+                    to be easy to use if it was going to rival my deeply-rooted 
+                    habits of doing things. I accomplished this with a Python package named
+                    inquirer.
+                </p>
+                <p>
+                    Lastly, I tackled the biggest challenge of the project: implementing
+                    different tools for modifying and exporting my diary data. Doing so 
+                    required me to learn to use many new Python modules. Mutagen allowed
+                    me to pull metadata from mp3 files and record the length of my diary 
+                    entries. Pandas was used in almost every facet
+                    of the final prodcut, because of its power to navigate large amounts
+                    of data. Python's Regex library was instrumentable in creating a 
+                    search function.
+                </p>
+                <p>
+                    Below is one of the most complicated functions I wrote:
+                </p>
+                <div id='scroll'>
+                    def update_statistics_csv(self, last_entry):
+                </br>
+                    &nbsp if last_entry is None:
+                </br>
+                    &nbsp &nbsp return None
+                </br>
+                    &nbsp # Generates list of all complete years (except 2013, a partial)
+                </br>
+                    &nbsp current_year = int(self.get_current_year())
+                </br>
+                    &nbsp total_years = []
+                </br>
+                    &nbsp while current_year != 2013:
+                </br>
+                    &nbsp current_year = current_year - 1
+                </br>
+                    &nbsp total_years.append(current_year)
+                </br>
+                </br>
+                    &nbsp # Calculate key statistics for every available year
+                </br>
+                    &nbsp for year in total_years:
+                </br>
+                    &nbsp &nbsp current_year = self._diary.loc[self._diary['year'] == year]
+                </br>
+                    &nbsp &nbsp year_happiness = current_year.describe()['happiness']['mean']
+                </br>
+                    &nbsp &nbsp # Calculate lists of months and weekdays ranked by happiness, people ranked by mentions
+                </br>
+                    &nbsp &nbsp months_ranked = self.calculate_happiest_month(current_year)
+                </br>
+                    &nbsp &nbsp weekdays_ranked = self.calculate_happiest_weekday(current_year)
+                </br>
+                    &nbsp &nbsp people_ranked = self.calculate_most_mentioned(current_year)
+                </br>
+                </br>
+                    &nbsp &nbsp # Updates the stats spreadsheet
+                </br>
+                    &nbsp &nbsp v = 'w' if year == int(self.get_current_year()) - 1 else 'a'
+                </br>
+                    &nbsp &nbsp with open('statistics.csv', f'{v}', newline='') as outfile:
+                </br>
+                    &nbsp &nbsp &nbsp pd.DataFrame({'': year_happiness}, index=[year]).to_csv(outfile)
+                </br>
+                    &nbsp &nbsp &nbsp pd.DataFrame(months_ranked, index=[year]).to_csv(outfile)
+                </br>
+                    &nbsp &nbsp &nbsp pd.DataFrame(weekdays_ranked, index=[year]).to_csv(outfile)
+                </br>
+                    &nbsp &nbsp &nbsp pd.DataFrame(people_ranked, index=[year])[0:10].to_csv(outfile)
+                </div>
+                <p>
+                    This function creates a spreadsheet full of statistical data for every recorded
+                    year in my diary. It uses information such as a happiness index I've used to
+                    rate days with since 2013 in order to calculate averages based on year,
+                    month, and weekday.
+                </p>
+                <p>
+                    There was a lot to do, and sometimes I felt bogged down in the amount
+                    of things I had to keep track of. As you will see, this feeling is 
+                    closely related to the biggest lesson I learned.
+                </p>
+                <h3>Result</h3>
+                <p>
+                    The finished product can be found <a href='https://github.com/colinjoss/diary-assistant'>here</a>.
+                </p>
+                <h3>Lessons Learned</h3>
+                <p>
+                    The biggest lesson I learned from this project is that making a plan
+                    is very important. I could have saved a lot of time had I started with
+                    an outline and pseudocode, but as it is I had to do a lot of backtracking
+                    and reorganizing to figure out how it would all come together.
+                </p>
+                <p>
+                    Another big lesson I learned was how much the way data is stored makes
+                    a difference in how quickly it can be accessed. In earlier versions of 
+                    this project, I stored data from my spreadsheets in a series of nested
+                    dictionaries. Accessing data in these nested diaries required a set of 
+                    nested loops, resulting in poor algorithm time complexity.
+                </p>
+                
+            </article>
+            <footer>
+                <p>Website made by Colin Joss for Computer Science 290 at OSU</p>
+            </footer>
+        </div>
+    </body>
+</html>

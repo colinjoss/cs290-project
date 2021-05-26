@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    </head>
+    <body>
+        <div>
+            <hgroup>
+                <h1>Colin Joss</h1>
+                <h4>colindjoss@gmail.com</h4>
+                <h4>425-591-8603</h4>
+                <h4><a href='https://github.com/colinjoss'>github</a></h4>
+                <h4><a href='https://www.linkedin.com/in/colindjoss/'>linkedin</a></h4>
+            </hgroup>
+            <nav>
+                <ul>
+                    <a href='index.html'><li>Home</li></a>
+                    <a href='subpage-1.html'><li>Babel Bot</li></a>
+                    <a href='subpage-2.html'><li>AutoDiary</li></a>
+                    <a href='subpage-3.html'><li>Spotify ETL</li></a>
+                    <a href='contact_form.html'><li>Contact Me</li></a>
+                </ul>
+            </nav>
+            <article>
+                <h2>Project 3: Spotify ETL</h2>
+                <h4>Funnels the songs I listened to yesterday into a database</h4>
+                <h3>Problem</h3>
+                <p>
+                    Spotify doesn't allow the user to see their most played songs outside
+                    of a yearly playlist - and even then, this playlist isn't necessarily
+                    in order. I combined my interest in tracking my musical history with an
+                    interest in data engineering to create my first Extract Transform Load
+                    program.
+                </p>
+                <h3>Process</h3>
+                <p>
+                    For this project, I used a combination of this tutorial and the Spotify
+                    developer documentation. The YouTube video helped give an overview, as well
+                    as instruct me on how to structure my code, but it didn't do everything. I
+                    spent a lot of time pouring over information about how to use Spotify's API.
+                    The final result is a functioning ETL that will extract yesterday's listening
+                    history and store it in a small database on my local computer.
+                </p>
+                <p>
+                    After some frustration with connecting to the Spotify API, I discovered Spotipy,
+                    an extremely useful tool for this project. Through it I was successfully able
+                    to read the most recent 50 songs I'd listened to.
+                </p>
+                <p>
+                    I modeled the flow of my code after the tutorial linked above, making changes
+                    where necessary for my end goal. Of course, there were several challenges 
+                    encountered I had to solve completely on my own. For instance, in creating a
+                    function that converted milliseconds to H:M:S timestamps, I realized that the 
+                    times I was getting were off my several hours. This is because Spotify is a 
+                    Swedish company, and I was getting times in a different timezone. To fix this, I
+                    used a module called pytz to convert them to Pacific time.
+                </p>
+                <div id='scroll'>
+                    def convert_timestamp_to_pfc(ts): 
+                </br>
+                    &nbsp stockholm = timezone("Europe/Stockholm")
+                </br>
+                    &nbsp seattle = timezone("US/Pacific")
+                </br>
+                </br>
+                    &nbsp ts = ts[0:10] + " " + ts[11:19]
+                </br>
+                    &nbsp ts_dt_obj = datetime.datetime.strptime(ts, "%Y-%m-%d %H:%M:%S")
+                </br>
+                </br>
+                    &nbsp ts_localized = stockholm.localize(ts_dt_obj)
+                </br>
+                    &nbsp return ts_localized.astimezone(seattle)
+                </div>
+                <p>
+                    Overall, I'm proud I was able to get some experience with working with data. As
+                    someone who keeps track of miscellaneous data about my life (see AutoDiary!), I 
+                    think working with data like this is pretty fun.
+                </p>
+                <h3>Result</h3>
+                <p>
+                    
+                    The finished product can be found <a href='https://github.com/colinjoss/spotify-pipeline'>here</a>.
+                </p>
+                <h3>Lessons Learned</h3>
+                <p>
+                    I learned that deciphering API documentation isn't always the easiest! Since 
+                    the tutorial linked went into very minimal detail about Spotify's API, I had to 
+                    go through quite a bit of trial and error when it came to connecting to my Spotify
+                    account. I hope that as I gain more experience with API's (since there are definite
+                    patterns of how to interact with them), it will become easier. I believe the first
+                    time is likely the hardest - especially considering how much easier it was to connect
+                    to the Twitter API during the creation of Babel Bot.
+                </p>
+            </article>
+            <footer>
+                <p>Website made by Colin Joss for Computer Science 290 at OSU</p>
+            </footer>
+        </div>
+    </body>
+</html>

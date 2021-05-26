@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    </head>
+    <body>
+        <div>
+            <hgroup>
+                <h1>Colin Joss</h1>
+                <h4>colindjoss@gmail.com</h4>
+                <h4>425-591-8603</h4>
+                <h4><a href='https://github.com/colinjoss'>github</a></h4>
+                <h4><a href='https://www.linkedin.com/in/colindjoss/'>linkedin</a></h4>
+            </hgroup>
+            <nav>
+                <ul>
+                    <a href='index.html'><li>Home</li></a>
+                    <a href='subpage-1.html'><li>Babel Bot</li></a>
+                    <a href='subpage-2.html'><li>AutoDiary</li></a>
+                    <a href='subpage-3.html'><li>Spotify ETL</li></a>
+                    <a href='contact_form.html'><li>Contact Me</li></a>
+                </ul>
+            </nav>
+            <section>
+                <form action='httpbin.org/', method='POST'>
+                    <fieldset>
+                        <legend>Contact Me</legend>
+                        <label> First name &nbsp &nbsp &nbsp <input type='text' name='firstName' id='firstName' required></label>
+                        </br>
+                        <label> Last name &nbsp &nbsp &nbsp <input type='text' name='lastName' id='secondName' required></label>
+                        </br>
+                        <label> Email address <input type='email' name='email' id= 'email' required></label>
+                        </br>
+                        <label>Message</label>
+                        </br>
+                        <textarea required></textarea>
+                        </br>
+                        <input type='button' name='submit' value='Submit' id='submit'>
+                    </fieldset>
+                </form>
+            </section>
+            <footer>
+                <p>Website made by Colin Joss for Computer Science 290 at OSU</p>
+            </footer>
+        </div>
+        <script src='form.js'></script>
+    </body>
+</html>

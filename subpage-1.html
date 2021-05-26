@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Babel Bot</title>
+        <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    </head>
+    <body>
+        <div>
+            <hgroup>
+                <h1>Colin Joss</h1>
+                <h4>colindjoss@gmail.com</h4>
+                <h4>425-591-8603</h4>
+                <h4><a href='https://github.com/colinjoss'>github</a></h4>
+                <h4><a href='https://www.linkedin.com/in/colindjoss/'>linkedin</a></h4>
+            </hgroup>
+            <nav>
+                <ul>
+                    <a href='index.html'><li>Home</li></a>
+                    <a href='subpage-1.html'><li>Babel Bot</li></a>
+                    <a href='subpage-2.html'><li>AutoDiary</li></a>
+                    <a href='subpage-3.html'><li>Spotify ETL</li></a>
+                    <a href='contact_form.html'><li>Contact Me</li></a>
+                </ul>
+            </nav>
+            <article>
+                <h2>Project 1: Babel Bot</h2>
+                <h4>A Twitter bot that makes humorous mistranslations</h4>
+                <h3>Problem</h3>
+                <p>
+                    I participated in the HackOR hackathon with a group of three others.
+                    We needed to come up with a project. In the end, we
+                    went with my idea: a Twitter bot that would reply to Tweets with the
+                    same text after being translated through several random languages. Like a game
+                    of telephone, the goal is for the original message to be distorted 
+                    into a (usually humorous) mistranslation.
+                </p>
+                <h3>Process</h3>
+                <p>
+                    Creating Babel Bot took place over 48 hours. In that time, each member
+                    of the team contributed by writing code and learning how to use Tweepy,
+                    Python's Twitter library, and other required modules.
+                </p>
+                <p>
+                    Our team proceeded to work on Babel Bot in an unscripted, collaborative 
+                    way, since time was short to plan out details. Members would alert others what part they were working on over 
+                    Discord, so no two members were working on the same thing. If any team
+                    member encountered a problem, there was always someone to help them
+                    out it. It was a very positive experience working with others for the
+                    first time.
+                </p>
+                <p>
+                    One of the biggest contributions I made to this project was learning how 
+                    to set up a Listener with Tweepy. What I learned became a very large 
+                    part of the final code, eventually containing functions other members 
+                    had written.
+                </p>
+                <p>
+                    There was one exception to our "first come, first served" system:
+                    each member wrote their own version of the translate function. Though 
+                    inefficient, coding this way had its merits. For example, it was an
+                    opportunity to really watch how another member coded and reflect on
+                    what they did better or worse.
+                </p>
+                <p>
+                    I'm proud to say my translate function was selected as the bulk of
+                    what ended up in our final code. This code can be seen below:
+                </p>
+                <div id='scroll'>
+                    lang_dict = GoogleTranslator.get_supported_languages(as_dict=True)
+                    </br>
+                    lang_codes = list(lang_dict.values())
+                    </br>
+                    </br>
+                    def translate(text):
+                    </br>
+                    &nbsp origin_lang = single_detection(text, api_key=secrets.DTL)
+                    </br>
+                    &nbsp languages = random.sample(lang_codes, 10)
+                    </br>
+                    &nbsp for lang in languages:
+                    </br>
+                    &nbsp &nbsp text = GoogleTranslator(source='auto', target=lang).translate(text)
+                    </br>
+                    &nbsp return GoogleTranslator(source='auto', target=origin_lang).translate(text)
+                </div>
+                <p>
+                    My solution was chosen for its brevity.
+                    A list of ten random languages is created, and the given text is translated
+                    from one language to the next before being translated back to the origin
+                    lanuage and returned.
+                </p>
+                <h3>Results</h3>
+                <p>
+                    The finished product can be found <a href='https://github.com/Kirbyda6/Twitter_Bot'>here</a>.
+                </p>
+                <h3>Lessons Learned</h3>
+                <p>
+                    The biggest challenge overcome was the unfamiliar task of working with
+                    other programmers. We all had to learn how to use Git collaboratively as
+                    as we attempted to finish our project. None of us had experience with 
+                    using Git in this way.
+                </p>
+                <p>
+                    Throughout the hackathon, there was only one notable mishap with Git.
+                    Changes were merged in the remote, but some data was accidentally lost.
+                    Working through this issue was a valuable opportunity to problem-solve 
+                    a potential real-world problem - what do you do when code is misplaced or
+                    accidentally removed? It's easier to mismanage code when multiple brains
+                    are working on it.
+                </p>
+            </article>
+            <footer>
+                <p>Website made by Colin Joss for Computer Science 290 at OSU</p>
+            </footer>
+        </div>
+    </body>
+</html>
